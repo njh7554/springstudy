@@ -97,4 +97,3 @@ public class BoardUnitTest {
 		assertEquals(1, boardDAO.deleteBoard(board_no)); // boardDAO.deleteBoard(board) 결과가 1이면 테스트 성공!!!
 	}
 }
-

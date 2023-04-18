@@ -24,40 +24,54 @@ import com.jdu.app04.repository.BoardDAO;
 	2. @ComponentScan이라는 애너테이션 쓰기 	
  */
 
-@Service // @Component 라고 해도되는데 @Service에서 구현할수 있는 기능을 다 못쓴다, 객체로 만들어졌으니 @autowired로 가져다 쓰는게 가능해진다.
-public class BoardServiceImpl implements BoardService {
+/*
+@Component
+1. BoardServiceImpl 클래스 타입의 객체를 만들어서 Spring Container에 저장한다.
+2. <bean> 태그나 @Configuration + @Bean 애너테이션을 대체하는 방식이다.
+3. Layer별 전용 @Component가 만들어져 있다.
+	1) 컨트롤러   : @Controller
+	2) 서비스     : @Service
+	3) 레파지토리 : @Repository
+*/
 
+/*
+단, @Component가 @Autowired를 통해서 인식되려면 Component-Scan이 등록되어 있어야 한다.
+Component-Scan 등록 방법
+방법1. <context:component-scan> - servlet-context.xml에 이미 등록되어 있다.
+방법2. @ComponentScan
+*/
+	
+	@Service
+	public class BoardServiceImpl implements BoardService {
+	
 	@Autowired
-	private BoardDAO boradDAO;
+	private BoardDAO boardDAO;
 	
 	@Override
 	public List<BoardDTO> getBoardList() {
-		
-		return null;
+		return boardDAO.selectBoardList();
 	}
-
+	
 	@Override
 	public BoardDTO getBoardByNo(int board_no) {
 		
-		return null;
+		return boardDAO.selectBoardByNo(board_no);
 	}
-
+	
 	@Override
 	public int addBoard(BoardDTO board) {
-		
-		return 0;
+		return boardDAO.insertBoard(board);
 	}
-
+	
 	@Override
 	public int modifyBoard(BoardDTO board) {
-		
-		return 0;
+		return boardDAO.updateBoard(board);
 	}
-
+	
 	@Override
 	public int removeBoard(int board_no) {
 		
-		return 0;
+		return boardDAO.deleteBoard(board_no);
 	}
-
+	
 }
