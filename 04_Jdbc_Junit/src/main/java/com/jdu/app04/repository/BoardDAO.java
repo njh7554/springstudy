@@ -76,7 +76,7 @@ public class BoardDAO {
 			sql = "SELECT BOARD_NO, TITLE, CONTENT, WRITER, CREATED_AT, MODIFIED_AT FROM BOARD WHERE BOARD_NO = ?"; // + board_no 이런식으로 넣으면 보안상 안좋다
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, board_no); // ?, 1번에 board_no로 채우기
-			rs = ps .executeQuery(); // 쿼리문을 실행해달라
+			rs = ps.executeQuery(); // 쿼리문을 실행해달라
 			if(rs.next()) { // 행이 존재하면 true 존재 하지 않으면 false 
 				board = new BoardDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)); 
 			}
