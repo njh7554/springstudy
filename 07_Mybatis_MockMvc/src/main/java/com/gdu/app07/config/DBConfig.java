@@ -39,15 +39,15 @@ public class DBConfig {
 	
 	// HikariDataSource Bean	
 	@Bean(destroyMethod="close")
-	public HikariDataSource dataSource() {
+	public HikariDataSource hikariDataSource() {
 		return new HikariDataSource(hikariConfig());
 	}
 	
 	// SqlSessionFactory Bean
 	@Bean
-	public SqlSessionFactory factory() throws Exception {  
+	public SqlSessionFactory sqlSessionFactory() throws Exception {  
 		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
-		bean.setDataSource(dataSource());
+		bean.setDataSource(hikariDataSource());
 		// application.properties에 있는 mybatis.config-location을 전달
 		bean.setConfigLocation(new PathMatchingResourcePatternResolver().getResource(env.getProperty("mybatis.config-location")));
 		bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(env.getProperty("mybatis.mapper-locations")));
@@ -56,14 +56,14 @@ public class DBConfig {
 	
 	// SqlSessionTemplate Bean (기존의 SqlSession)   결론적으로는 이걸 만들기위해 위의 작업들을 해주는 것.
 	@Bean
-	public SqlSessionTemplate template() throws Exception { // factory를 가져오기 때문에 던져줘야함.
-		return new SqlSessionTemplate(factory());
+	public SqlSessionTemplate sqlSessionTemplate() throws Exception { // factory를 가져오기 때문에 던져줘야함.
+		return new SqlSessionTemplate(sqlSessionFactory());
 	}
 	
 	// TransactionManager Bean
 	@Bean
 	public TransactionManager transactionManager() {
-		return new DataSourceTransactionManager(dataSource());
+		return new DataSourceTransactionManager(hikariDataSource());
 	}
 	
 }
