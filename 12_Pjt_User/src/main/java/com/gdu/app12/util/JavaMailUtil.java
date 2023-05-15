@@ -65,5 +65,7 @@ public class JavaMailUtil {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
+	
 }
