@@ -11,7 +11,7 @@ import com.gdu.app11.util.MyFileUtil;
 
 @EnableScheduling
 @Component
-public class RemoveTempFileScheduler {
+public class RemoveTempfileScheduler {
 
 	// 임시 폴더(temp)의 모든 파일을 매일 새벽 3시에 지우는 스케쥴러
 	

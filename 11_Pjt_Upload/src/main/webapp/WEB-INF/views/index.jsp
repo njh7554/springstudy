@@ -14,7 +14,7 @@
 <body>
 
 	<div>
-		<a href="${contextPath}/upload/list.do">Upload</a>
+		<a href="${contextPath}/upload/list.do">UPLOAD</a>
 	</div>
 	
 </body>

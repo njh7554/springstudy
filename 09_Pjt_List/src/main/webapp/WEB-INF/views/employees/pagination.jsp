@@ -19,8 +19,8 @@
 		// 세션에 저장된 recordPerPage값으로 <select> 태그의 값을 세팅
 		let recordPerPage = '${sessionScope.recordPerPage}' == '' ? '10' : '${sessionScope.recordPerPage}';
 		$('#recordPerPage').val(recordPerPage);
-		// 제목을 클릭하면 정렬 방식을 바꾼다.
-		$('.title').on('click', function(){										// this는 jquery가 아니기 때문에 랩핑을 해줘야 함
+		// 제목을 클릭하면 정렬 방식을 바꿈
+		$('.title').on('click', function(){
 			location.href = '${contextPath}/employees/pagination.do?column=' + $(this).data('column') + '&order=' + $(this).data('order') + "&page=${page}";
 		})
 	})
@@ -42,7 +42,7 @@
 	}
 	.pagination span, .pagination a {
 		display: inline-block;
-		width: 0 15px;
+		margin: 0 15px;
 	}
 	.hidden {
 		visibility: hidden;
@@ -56,20 +56,15 @@
 	table {
 		width: 1500px;
 	}
-	table td:ntn-of-type(1) { width: 100px;}
-	table td:ntn-of-type(2) { width: 150px;}
-	table td:ntn-of-type(3) { width: 300px;}
-	
+	table td:nth-of-type(1) { width: 100px; }
+	table td:nth-of-type(2) { width: 150px; }
+	table td:nth-of-type(3) { width: 300px; }
 </style>
 </head>
 <body>
-
-	<div>
-		<a href="${contextPath}/employees/search.do">사원 조회 화면으로 이동</a>
-	</div>
 	
 	<div>
-		<h1>사원 목록</h1>
+		<h1>사원 전체 목록</h1>
 		<div>
 			<select id="recordPerPage">
 				<option value="10">10개</option>

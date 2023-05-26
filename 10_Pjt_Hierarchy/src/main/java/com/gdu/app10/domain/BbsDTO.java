@@ -7,8 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class BbsDTO {
 	private int bbsNo;
 	private String writer;
@@ -19,5 +19,4 @@ public class BbsDTO {
 	private int depth;
 	private int groupNo;
 	private int groupOrder;
-	
 }

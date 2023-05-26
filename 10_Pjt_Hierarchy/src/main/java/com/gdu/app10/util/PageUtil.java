@@ -64,14 +64,14 @@ public class PageUtil {
 		
 	}
 	
-	
 	public String getPagination(String path) {
-		// contains는 ??이 포함되어 있느냐
+		
 		// path에 ?가 포함되어 있으면 이미 파라미터가 포함된 경로이므로 &를 붙여서 page 파라미터를 추가한다.
+		
 		if(path.contains("?")) {
-			path += "&"; 	// "/app09/employees/pagination.do?order=ASC&"
+			path += "&";  // path = "/app09/employees/pagination.do?order=ASC&"
 		} else {
-			path += "?";	// "/app09/employees/pagination.do?"
+			path += "?";  // path = "/app09/employees/pagination.do?"
 		}
 		
 		StringBuilder sb = new StringBuilder();
@@ -108,3 +108,4 @@ public class PageUtil {
 	}
 	
 }
+

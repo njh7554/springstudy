@@ -45,7 +45,8 @@ public class BbsServiceImpl implements BbsService {
 		
 		model.addAttribute("bbsList", bbsList);
 		model.addAttribute("beginNo", totalRecord - (page - 1) * recordPerPage);
-		model.addAttribute("pagination", pageUtil.getPagination(request.getContextPath() + "/bbs/list.do"));
+		//model.addAttribute("pagination", pageUtil.getPagination(request.getContextPath() + "/bbs/list.do"));  // 아래 코드로 대체 가능합니다.
+		model.addAttribute("pagination", pageUtil.getPagination(request.getRequestURI()));
 		
 	}
 	
@@ -70,6 +71,7 @@ public class BbsServiceImpl implements BbsService {
 		
 		// 결과 반환
 		return addResult;
+		
 	}
 	
 	@Override
@@ -77,8 +79,8 @@ public class BbsServiceImpl implements BbsService {
 		int removeResult = bbsMapper.removeBbs(bbsNo);
 		return removeResult;
 	}
-								   //readOnly=true는 성능 향상에 도움을 주기 때문에 항상 붙이는 게 좋음	
-	@Transactional(readOnly=true)  // INSERT,UPDATE,DELETE 중 2개 이상의 쿼리를 실행하는 경우 반드시 추가한다. 
+	
+	@Transactional(readOnly=true)  // INSERT,UPDATE,DELETE 중 2개 이상의 쿼리를 실행하는 경우 반드시 추가한다.
 	@Override
 	public int addReply(HttpServletRequest request) {
 		
@@ -94,7 +96,7 @@ public class BbsServiceImpl implements BbsService {
 		int groupNo = Integer.parseInt(request.getParameter("groupNo"));
 		int groupOrder = Integer.parseInt(request.getParameter("groupOrder"));
 		
-		// 원글 BbsDTO (기존 답글 선행 작업 : increaseGroupOrder를 위한 DTO)
+		// 원글 bbsDTO (기존 답글 선행 작업 : increaseGroupOrder를 위한 DTO)
 		BbsDTO bbsDTO = new BbsDTO();
 		bbsDTO.setGroupNo(groupNo);
 		bbsDTO.setGroupOrder(groupOrder);
@@ -109,12 +111,28 @@ public class BbsServiceImpl implements BbsService {
 		replyDTO.setIp(ip);
 		replyDTO.setDepth(depth + 1);
 		replyDTO.setGroupNo(groupNo);
-		replyDTO.setGroupOrder(groupOrder + 1);	
+		replyDTO.setGroupOrder(groupOrder + 1);
 		
 		// 답글 달기
 		int addReplyResult = bbsMapper.addReply(replyDTO);
 		
 		return addReplyResult;
+		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

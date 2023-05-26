@@ -19,9 +19,8 @@
 	<div>
 		<a href="${contextPath}/employees/scroll.page">스크롤</a>
 	</div>
-	
 	<div>
-		<a href="${contextPath}/employees/search.do">서치</a>
+		<a href="${contextPath}/employees/search.do">사원 조회 화면으로 이동</a>
 	</div>
 	
 </body>
